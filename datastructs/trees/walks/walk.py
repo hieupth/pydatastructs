@@ -23,6 +23,7 @@
 # -----------------------------------------------------------------------------
 
 from ... import Stack
+from copy import copy
 
 
 class Walk:
@@ -45,7 +46,7 @@ class Walk:
         """
         Get result nodes.
         """
-        return self.__nodes
+        return copy(self.__nodes)
 
     def __init__(self, axis: tuple = (0, 0, 0), **kwargs):
         """

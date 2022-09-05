@@ -24,7 +24,6 @@
 
 from copy import copy
 from threading import Lock
-from .walks import UndermostWalk
 from abc import ABC, abstractmethod
 
 
@@ -198,7 +197,7 @@ class Node(AbstractNode):
         if self.capacity is None:
             self.__leafs.append(node) if pos > 0 else self.__leafs.insert(0)
         # Otherwise.
-        elif pos < self.size:
+        elif pos < self.capacity:
             parent = self
             # If the leaf at desired position is not filled yet then we can attach the node.
             if parent.__leafs[pos] is None:
@@ -206,9 +205,8 @@ class Node(AbstractNode):
             # If the leaf at desired position is filled, node will be attach to bottommost 
             # leaf at the same position if bottommost is true.
             elif bottommost:
-                parent = parent.__leafs[pos]
-                while parent is not None:
-                    parent = parent.__leafs[pos if parent.size > 1 else 0]
+                while parent.__leafs[pos] is not None:
+                    parent = parent.__leafs[pos if parent.capacity > 1 else 0]
                 self.__on_attach(parent, node, pos)
             # Otherwise, release thread-lock and raise index error.
             else:
