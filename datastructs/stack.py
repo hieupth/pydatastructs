@@ -32,8 +32,8 @@ class Stack:
     This is the thread-safe implementation of stack.
     ---------
     @author:    Hieu Pham.
-    @created:   04/09/2022.
-    @updated:   04/09/2022.
+    @created:   04.09.2022.
+    @updated:   05.09.2022.
     """
 
     # Locking will be acquired in data writing.
@@ -44,9 +44,16 @@ class Stack:
     @property
     def data(self):
         """
-        Get the copy of stack data.
+        Get a copy of stack data.
         """
         return copy(self.__data)
+
+    @property
+    def size(self):
+        """
+        Get size of stack data.
+        """
+        return len(self.__data)
 
     def push(self, item, lock: bool = True, **kwargs):
         """
