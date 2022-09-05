@@ -61,6 +61,7 @@ class Stack:
         :param item:    item to be pushed.
         :param lock:    lock for thread-safe or not.
         :param kwargs:  additional keyword arguments to be passed.
+        :return:        none.
         """
         # Lock for thread-safe.
         if lock:
@@ -94,5 +95,14 @@ class Stack:
         Peek an item from stack.
         :param index:   index of item to be peeked.
         :param kwargs:  additional keyword arguments to be passed.
+        :return:        peeked item.
         """
         return self.__data[-1] if index is None else self.__data[index]
+
+    def clear(self, **kwargs):
+        """
+        Clear all data in stack.
+        :param kwargs:  additional keyword arguments to be passed.
+        :return:        none.
+        """
+        self.__data.clear()
