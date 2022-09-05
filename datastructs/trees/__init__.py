@@ -22,4 +22,4 @@
 # SOFTWARE.
 # -----------------------------------------------------------------------------
 
-from .node import AbstractNode
+from .node import AbstractNode, Node
